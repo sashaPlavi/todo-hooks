@@ -9,10 +9,15 @@ export const TodoList = () => {
 
   return (
     <>
-      <h3>Todos</h3>
+      <h1>Todos</h1>
       <ul className="list">
         {todos.map(todo => (
-          <Todo key={todo.id} text={todo.text} />
+          <Todo
+            key={todo.id}
+            id={todo.id}
+            text={todo.text}
+            isComplete={todo.isComplete}
+          />
         ))}
       </ul>
     </>

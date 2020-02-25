@@ -36,12 +36,26 @@ export const GlobalProvider = ({ children }) => {
       payload: todo
     });
   };
+  const deleteTodo = id => {
+    dispatch({
+      type: "DELETE_TODO",
+      payload: id
+    });
+  };
+  const completeTodo = id => {
+    dispatch({
+      type: "COMPLETE_TODO",
+      payload: id
+    });
+  };
 
   return (
     <GlobalContext.Provider
       value={{
         todos: state.todos,
-        addTodo
+        addTodo,
+        deleteTodo,
+        completeTodo
       }}
     >
       {children}
