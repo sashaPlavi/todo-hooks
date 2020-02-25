@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
+import { GlobalContext } from "../context/GlobalState";
 
-export const TodoForm = ({ addTodo }) => {
-  const [value, setValue] = React.useState("");
+export const TodoForm = () => {
+  const [text, setText] = React.useState("");
+  const { addTodo } = useContext(GlobalContext);
   const handleSubmit = e => {
     e.preventDefault();
-    if (!value) return;
-    addTodo(value);
-    setValue("");
+    if (text) {
+      const newTodo = {
+        id: Math.floor(Math.random() * 10000),
+        text,
+        is_completed: false
+      };
+      console.log(newTodo);
+
+      addTodo(newTodo);
+      setText("");
+    }
   };
 
   return (
@@ -16,9 +26,10 @@ export const TodoForm = ({ addTodo }) => {
           type="text"
           className="input"
           placeholder="add todo..."
-          value={value}
-          onChange={e => setValue(e.target.value)}
+          value={text}
+          onChange={e => setText(e.target.value)}
         />
+        <input type="submit" value="submit" />
       </form>
     </div>
   );

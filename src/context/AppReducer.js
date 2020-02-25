@@ -3,7 +3,7 @@ export default (state, action) => {
     case "ADD_TODO":
       return {
         ...state,
-        transactions: [action.payload, ...state.todos]
+        todos: [action.payload, ...state.todos]
       };
     default:
       return state;
